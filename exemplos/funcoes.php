@@ -16,7 +16,7 @@
         // strlen() retorna o número de caracteres na string
         $length = strlen($name);
         // Comparação
-        // Comparação lexicográfica retorna 0 se forem iguais, <0 se $name < "Brian Le", >0 se $name > "Brian Le"
+        // Retorna 0 se forem iguais, um valor negativo se a primeira for menor, ou um valor positivo se a primeira for maior
         $cmp = strcmp($name, "Brian Le");
         // Índice dos caracteres
         // strpos() retorna a posição do primeiro 'e' na string, ou false se não encontrado
