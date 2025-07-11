@@ -12,6 +12,7 @@
         date_default_timezone_set('America/Sao_Paulo');
         // Manipulando HTML e PHP
         $data_hoje = date('d/m/Y', time());
+
     ?>
 
     <h1 style="text-align: center;">
@@ -20,6 +21,7 @@
     <p style="text-align: center;">
         Hoje é <?php echo $data_hoje; ?>.
     </p>
+    <p>Micael Jeferson Junco</p>
 
 </body>
 </html>

@@ -34,6 +34,9 @@
         echo "<p>Comparação: $cmp</p>";
         echo "<p>Posição do 'e': $index</p>";
         echo "<p>Sub-string: $first</p>";
+
+        print "Micael Jeferson Junco";
+
     ?>
 </body>
 </html>
