@@ -1,2 +1,2 @@
-# Desn_Sistemas_PHP
-Repositório para aulas de PHP.
+# Unidade Curricular de Desenvolvimento de Sistemas
+  Esse repositório é parte do curso de Desenvolvimento de Sistemas.
