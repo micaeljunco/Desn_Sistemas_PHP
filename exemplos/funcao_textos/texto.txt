@@ -1,0 +1,7 @@
+Esse é um exemplo de texto em um arquivo TXT:
+
+Olá
+Como vai
+Você?
+
+Eu estou bem.

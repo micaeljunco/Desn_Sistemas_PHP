@@ -1,0 +1,5 @@
+Nome: Micael Jeferson Junco;
+Idade: 16 anos;
+Curso: Técnico em Desenvolvimento de Sistemas;
+Comida Fav.: Lasanha;
+Linguagens preferidas: JavaScript, TypeScript
