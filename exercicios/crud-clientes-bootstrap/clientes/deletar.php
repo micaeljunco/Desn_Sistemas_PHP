@@ -15,29 +15,38 @@
         </h1>
     </header>
 
-    <nav id="acesso" class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand">Acesso Rápido</a>
-        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
 
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+    <div class="acesso bg-body-tertiary sticky-top">
+        <a class="acesso dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Acesso
+            Rápido</a>
+
+        <div class="collapse dropdown-menu" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
                 <a class="nav-link" href="../" target="_self">Home</a>
                 <a class="nav-link" href="inserir.php" target="_self">Cadastrar</a>
                 <a class="nav-link" href="pesquisar.php" target="_self">Pesquisar</a>
                 <a class="nav-link" href="listar.php" target="_self">Visualizar</a>
                 <a class="nav-link" href="atualizar.php" target="_self">Atualizar</a>
                 <a class="nav-link" href="deletar.php" target="_self">Deletar</a>
-            </div>
+            </ul>
         </div>
-    </nav>
+    </div>
 
     <main id="pag-formulario">
         <h2>Excluir Cliente</h2>
         <form action="../src/model/processarDelecao.php" method="POST">
-            <label for="id">ID do Cliente:</label>
-            <input type="number" id="id" name="id" required>
-            <button type="submit">Excluir Cliente</button>
+            <div class="mb-3">
+                <label for="id" class="form-label">ID do Cliente:</label>
+            </div>
+            <div class="mb-3">
+                <input type="number" id="id" name="id" class="form-control" required min="0" step="1">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Excluir Cliente</button>
+            </div>
         </form>
     </main>
 
