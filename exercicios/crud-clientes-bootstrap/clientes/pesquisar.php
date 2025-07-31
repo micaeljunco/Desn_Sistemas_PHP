@@ -15,24 +15,26 @@
         </h1>
     </header>
 
-    <nav id="acesso" class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand">Acesso Rápido</a>
-        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
 
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+    <div class="acesso bg-body-tertiary sticky-top">
+        <a class="acesso dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Acesso
+            Rápido</a>
+
+        <div class="collapse dropdown-menu" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
                 <a class="nav-link" href="../" target="_self">Home</a>
                 <a class="nav-link" href="inserir.php" target="_self">Cadastrar</a>
                 <a class="nav-link" href="pesquisar.php" target="_self">Pesquisar</a>
                 <a class="nav-link" href="listar.php" target="_self">Visualizar</a>
                 <a class="nav-link" href="atualizar.php" target="_self">Atualizar</a>
                 <a class="nav-link" href="deletar.php" target="_self">Deletar</a>
-            </div>
+            </ul>
         </div>
-    </nav>
+    </div>
 
-    <main id="pag-formulario">
         <?php
 
         require_once '../src/config/conexao.php';
@@ -43,13 +45,28 @@
 
         if ($busca == '') {
             ?>
+    <main id="pag-formulario">
+
+            <h2>Pesquisar Clientes</h2>
             <form action="pesquisar.php" method="GET">
-                <label for="busca">Digite o ID ou Nome:</label>
-                <input type="text" id="busca" name="busca" required>
-                <button type="submit">Pesquisar</button>
+                <div class="mb-3">
+                    <label for="busca" class="form-label">Digite o ID ou Nome:</label>
+                    <input type="text" id="busca" name="busca" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Pesquisar</button>
+                </div>
             </form>
-            <?php
-            exit;
+        </main>
+        <footer id="rodape-pag">
+            <div class="container d-flex justify-content-between align-items-center flex-wrap">
+                <img src="../css/senai-logo.png" alt="Logo do SENAI" width="200">
+                <p class="text-light m-0">Desenvolvido por Micael Jeferson Junco como parte do curso Técnico em
+                    Desenvolvimento de Sistemas - SC/SENAI.</p>
+            </div>
+        </footer>
+        <?php
+        exit;
         }
 
         if (is_numeric($busca)) {
@@ -68,6 +85,8 @@
             die("ERRO: Nenhum cliente encontrado.");
         }
         ?>
+    <main id="pag-formulario">
+
         <table id="tabela-vizu-clientes" class="table table-striped table-hover" style="margin-top:12px;">
             <tr>
                 <th>ID</th>
