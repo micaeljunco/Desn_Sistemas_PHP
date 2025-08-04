@@ -9,6 +9,6 @@ $senha = "";                // Senha do usuário
 $banco = "armazena_imagem";         // Nome do banco de dados
 
 $conexao = mysqli_connect($endereco, $usuario, $senha, $banco);
-if ($conexao -> connect_error) {
+if (!$conexao) {
     die("[ERRO]: Impossível conectar-se ao banco de dados". $conexao -> connect_error);
 }
