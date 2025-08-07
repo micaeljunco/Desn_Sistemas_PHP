@@ -1,6 +1,6 @@
 <?php
 // Função para redimencionar a imagem
-function redimencionarImagem($imagem, $largura, $altura)
+function redimensionarImagem($imagem, $largura, $altura)
 {
     // Obtem as dimensões originais da imagem
     // getimagesize() retorna a altura e largura de uma imagem
@@ -16,7 +16,7 @@ function redimencionarImagem($imagem, $largura, $altura)
 
     // Copia e redimensiona a imagem original para a nova 
     // imagecopyresampled() copia com redimensionamento e suavização
-    imagecopyresampled($nova_imagem, $imagem_original, 0, 0, 0, 0, $largura, $largura_original, $altura, $altura_original);
+    imagecopyresampled($nova_imagem, $imagem_original, 0, 0, 0, 0, $largura, $altura, $largura_original, $altura_original);
 
     // Inicia um buffer para guardar a imagem como texto binário
     // ob_start() inicia o output buffer, guardando a saída
@@ -43,8 +43,13 @@ $username = 'root';
 $password = '';
 
 try {
-    // Conexão com o BD por PDO
-    $pdo = new PDO('mysql:host=localhost;dbname=bd_imagens;charset=utf8', $username, $password);
+    // Monta a DSN (Data Source Name)
+    $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8";
+
+    // Cria a conexão PDO
+    $pdo = new PDO($dsn, $username, $password);
+
+    // Define o modo de erro para exceções
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['foto-func'])) {
@@ -56,17 +61,17 @@ try {
             $tipo_foto_func = $_FILES['foto-func']['type']; // Obtem o tipo original do arquivo de imagem
 
             // Redimensionando a imagem
-            $foto_redimensionada = redimencionarImagem($_FILES['foto-func']['tmp_data'], 300, 400);
+            $foto_redimensionada = redimensionarImagem($_FILES['foto-func']['tmp_name'], 300, 400);
 
             // Insere no banco de dados
             $sql = "INSERT INTO funcionarios (nome, telefone, nome_foto, tipo_foto, foto)
                     VALUES (:nome, :telefone, :nome_foto, :tipo_foto, :foto)";
 
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':nome',$nome_func);
-            $stmt->bindParam(':telefone',$tel_func);
-            $stmt->bindParam(':nome_foto',$foto_func);
-            $stmt->bindParam(':tipo_foto',$tipo_foto_func);
+            $stmt->bindParam(':nome', $nome_func);
+            $stmt->bindParam(':telefone', $tel_func);
+            $stmt->bindParam(':nome_foto', $foto_func);
+            $stmt->bindParam(':tipo_foto', $tipo_foto_func);
             $stmt->bindParam(':foto', $foto_redimensionada, PDO::PARAM_LOB);    // LOB é iagual ao Large Object, usado para dados binários.
 
             if ($stmt->execute()) {
@@ -75,10 +80,33 @@ try {
                 echo "[ERRO]: Problema ao cadastrar o usuário.";
             }
         } else {
-            echo "[ERRO]: Problema ao realizar o upload do arquivo. Mais detalhes: ".$_FILES['foto-func']['error'];
+            echo "[ERRO]: Problema ao realizar o upload do arquivo. Mais detalhes: " . $_FILES['foto-func']['error'];
         }
     }
 
 } catch (PDOException $e) {
-    echo "[ERRO]: ".$e->getMessage();
+    echo "[ERRO]: " . $e->getMessage();
 }
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Funcionários</title>
+</head>
+
+<body>
+    <main id="conteudo-list">
+        <div class="titulo-pag">
+            <h1>Lista</h1>
+            <h2> de Funcionários</h2>
+        </div>
+
+        <a href="consulta_funcionarios.php">Lista de Funcionários</a>
+    </main>
+</body>
+
+</html>
