@@ -63,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="submit">Cadastrar</button>
         <button type="reset">Cancelar</button>
     </form>
-    <a href="principal.php">Voltar</a>
-</body>
+    <a href="principal.php">Voltar</a></body>
+    <p>Micael Jeferson Junco</p>
+
 </html>

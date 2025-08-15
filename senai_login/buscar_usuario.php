@@ -51,6 +51,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <label for="busca">Digite o ID ou nome:</label>
         <input type="text" name="busca" id="busca">
         <button type="submit">Pesquisar</button>
+        <script src="scripts.js"></script>
     </form>
 
     <?php if(!empty($usuarios)): ?>
@@ -83,5 +84,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Nenhum usuário encontrado.</p>
         <?php endif; ?>
         <a href="principal.php">Voltar</a>
+    <p>Micael Jeferson Junco</p>
+
 </body>
 </html>

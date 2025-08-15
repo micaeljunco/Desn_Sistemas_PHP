@@ -110,6 +110,7 @@ $opcoes_menu = $permissoes[$id_perfil];
 
         </ul>
     </nav>
+    <p>Micael Jeferson Junco</p>
 </body>
 
 </html>

@@ -47,7 +47,7 @@ if (!$usuario) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Usuários</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </head>
 
 <body>
@@ -92,6 +92,8 @@ if (!$usuario) {
     <?php endif; ?>
 
         <a href="principal.php">Voltar</a>
+    <p>Micael Jeferson Junco</p>
+
 
 </body>
 
