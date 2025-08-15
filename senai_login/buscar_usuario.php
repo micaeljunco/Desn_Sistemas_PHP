@@ -39,23 +39,26 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busca de Usuários</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
 </head>
-<body>
+
+<body style="padding:4px">
     <h2>Lista de Usuários</h2>
     <form action="buscar_usuario.php" method="POST">
         <label for="busca">Digite o ID ou nome:</label>
         <input type="text" name="busca" id="busca">
         <button type="submit">Pesquisar</button>
-        <script src="scripts.js"></script>
     </form>
 
-    <?php if(!empty($usuarios)): ?>
-        <table border="1">
+    <?php if (!empty($usuarios)): ?>
+        <table class="table">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
@@ -63,7 +66,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <th>Perfil</th>
                 <th>Ações</th>
             </tr>
-            <?php foreach($usuarios as $usuario): ?>
+            <?php foreach ($usuarios as $usuario): ?>
                 <tr>
                     <td><?= htmlspecialchars($usuario['id_usuario']); ?></td>
                     <td><?= htmlspecialchars($usuario['nome']); ?></td>
@@ -74,17 +77,19 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             alterar_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario']); ?>">Alterar
                         </a>
                         <a href="
-                            excluir_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario']); ?>" onclick="return confirm('Tem certeza de que deseja excluir este usuário?')">Excluir
+                            excluir_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario']); ?>"
+                            onclick="return confirm('Tem certeza de que deseja excluir este usuário?')">Excluir
                         </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </table>
-        <?php else: ?>
-            <p>Nenhum usuário encontrado.</p>
-        <?php endif; ?>
-        <a href="principal.php">Voltar</a>
+    <?php else: ?>
+        <p>Nenhum usuário encontrado.</p>
+    <?php endif; ?>
+    <a href="principal.php">Voltar</a>
     <p>Micael Jeferson Junco</p>
 
 </body>
+
 </html>

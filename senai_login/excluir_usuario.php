@@ -36,6 +36,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir Usuário</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap.css">
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js"></script>
 </head>
@@ -43,7 +44,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <body>
     <h2>Excluir Usuário</h2>
     <?php if (!empty($usuarios)): ?>
-        <table border="1">
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
