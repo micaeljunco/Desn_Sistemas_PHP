@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $pdo->prepare($sql);
 }
 $stmt->execute();
-$usuario = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$usuario) {
     echo "<script>alert('Usuário não encontrado!');</script>";
@@ -63,15 +63,13 @@ if (!$usuario) {
     <?php if ($usuario): ?>
         <!-- Formulario para alterar usuario -->
         <form action="processa_alteracao_usuario.php" method="post">
-            <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
+            <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>" >
 
             <label for="nome">Nome:</label>
-            <input type="text" name="nome" id="nome" value="
-                <?= htmlspecialchars($usuario['nome']) ?>" required>
+            <input type="text" name="nome" id="nome" value="<?= htmlspecialchars($usuario['nome']) ?>" required>
 
             <label for="email">Email:</label>
-            <input type="email" name="email" id="email" value="
-                <?= htmlspecialchars($usuario['email']) ?>" required>
+            <input type="email" name="email" id="email" value="<?= htmlspecialchars($usuario['email']) ?>" required>
 
             <label for="id_perfil">Perfil:</label>
             <select name="id_perfil" id="id_perfil">
@@ -81,8 +79,19 @@ if (!$usuario) {
                 <option value="4" <?= $usuario['id_perfil'] == 4 ? 'selected' : '' ?>>Cliente</option>
             </select>
 
+            <!-- Se o usuário logado for adm: exibir opção de alterar senha -->
+            <?php if ($_SESSION['perfil'] == 1): ?>
+                <label for="nova_senha">Nova Senha:</label>
+                <input type="password" name="nova_senha" id="nova_senha">
+            <?php endif; ?>
+
+            <button type="submit">Salvar Alterações</button>
+            <button type="reset">Cancelar Alterações</button>
+
         </form>
     <?php endif; ?>
+
+        <a href="principal.php">Voltar</a>
 
 </body>
 
