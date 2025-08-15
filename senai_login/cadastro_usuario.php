@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="senha" id="senha" required>
         
         <label for="id_perfil">* Perfil:</label>
-        <select name="nome" id="nome" required>
+        <select name="id_perfil" id="id_perfil" required>
             <option value="1">Administrador</option>
             <option value="2">Secretaria</option>
             <option value="3">Almoxarifado</option>
