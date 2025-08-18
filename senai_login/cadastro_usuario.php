@@ -39,6 +39,7 @@ include "permissoes.php";
     <title>Cadastro de Usuários</title>
     <link rel="stylesheet" href="../bootstrap/bootstrap.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="validacoes.js"></script>
 </head>
 
 <body>
@@ -63,7 +64,7 @@ include "permissoes.php";
         </ul>
     </nav>
     <h2>Cadastrar Usuário</h2>
-    <form action="cadastro_usuario.php" method="post">
+    <form onsubmit="return validarCamposUsuario()" action="cadastro_usuario.php" method="post">
         <label for="nome">* Nome:</label>
         <input type="text" name="nome" id="nome" required>
 
