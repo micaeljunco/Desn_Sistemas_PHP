@@ -51,6 +51,7 @@ include 'permissoes.php';
     <link rel="stylesheet" href="../bootstrap/bootstrap.css">
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js"></script>
+    <script src="validacoes.js"></script>
 </head>
 
 <body>
@@ -85,7 +86,7 @@ include 'permissoes.php';
 
     <?php if ($usuario): ?>
         <!-- Formulario para alterar usuario -->
-        <form action="processa_alteracao_usuario.php" method="post">
+        <form action="processa_alteracao_usuario.php" method="post" onsubmit="return validarCamposUsuario()">
             <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
 
             <label for="nome">Nome:</label>
