@@ -28,6 +28,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     }
 
 }
+
+include 'permissoes.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,9 +45,29 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 </head>
 
 <body>
+    <nav>
+        <ul class="menu">
+            <?php foreach ($opcoes_menu as $categoria => $arquivos): ?>
+
+                <li class="dropdown">
+                    <a href="#"><?= $categoria ?></a>
+                    <ul class="dropdown-menu">
+                        <?php foreach ($arquivos as $arquivo): ?>
+
+                            <li>
+                                <a href="<?= $arquivo ?>"><?= ucfirst(str_replace("_", " ", basename($arquivo, ".php"))) ?></a>
+                            </li>
+                        <?php endforeach ?>
+
+                    </ul>
+                </li>
+            <?php endforeach ?>
+
+        </ul>
+    </nav>
     <h2>Excluir Usuário</h2>
     <?php if (!empty($usuarios)): ?>
-        <table class="table">
+        <table class="table" style="margin:0px auto; width: 90%;">
             <thead>
                 <tr>
                     <th>ID</th>

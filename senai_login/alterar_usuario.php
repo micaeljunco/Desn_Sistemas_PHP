@@ -38,6 +38,8 @@ if (!$usuario) {
     echo "<script>alert('Usuário não encontrado!');</script>";
 }
 
+include 'permissoes.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -52,6 +54,26 @@ if (!$usuario) {
 </head>
 
 <body>
+    <nav>
+        <ul class="menu">
+            <?php foreach ($opcoes_menu as $categoria => $arquivos): ?>
+
+                <li class="dropdown">
+                    <a href="#"><?= $categoria ?></a>
+                    <ul class="dropdown-menu">
+                        <?php foreach ($arquivos as $arquivo): ?>
+
+                            <li>
+                                <a href="<?= $arquivo ?>"><?= ucfirst(str_replace("_", " ", basename($arquivo, ".php"))) ?></a>
+                            </li>
+                        <?php endforeach ?>
+
+                    </ul>
+                </li>
+            <?php endforeach ?>
+
+        </ul>
+    </nav>
     <h2>Alterar Usuário</h2>
 
     <form action="alterar_usuario.php" method="POST">
@@ -64,7 +86,7 @@ if (!$usuario) {
     <?php if ($usuario): ?>
         <!-- Formulario para alterar usuario -->
         <form action="processa_alteracao_usuario.php" method="post">
-            <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>" >
+            <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
 
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome" value="<?= htmlspecialchars($usuario['nome']) ?>" required>
@@ -92,7 +114,7 @@ if (!$usuario) {
         </form>
     <?php endif; ?>
 
-        <a href="principal.php">Voltar</a>
+    <a href="principal.php">Voltar</a>
     <p>Micael Jeferson Junco</p>
 
 

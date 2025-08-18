@@ -21,19 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(":senha", $senha);
     $stmt->bindParam(":id_perfil", $id_perfil);
 
-    if ($stmt->execute())
-    {
+    if ($stmt->execute()) {
         echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
-    }
-    else
-    {
+    } else {
         echo "<script>alert('Erro ao cadastrar usuário!');</script>";
     }
 }
+include "permissoes.php";
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +40,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../bootstrap/bootstrap.css">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <nav>
+        <ul class="menu">
+            <?php foreach ($opcoes_menu as $categoria => $arquivos): ?>
+
+                <li class="dropdown">
+                    <a href="#"><?= $categoria ?></a>
+                    <ul class="dropdown-menu">
+                        <?php foreach ($arquivos as $arquivo): ?>
+
+                            <li>
+                                <a href="<?= $arquivo ?>"><?= ucfirst(str_replace("_", " ", basename($arquivo, ".php"))) ?></a>
+                            </li>
+                        <?php endforeach ?>
+
+                    </ul>
+                </li>
+            <?php endforeach ?>
+
+        </ul>
+    </nav>
     <h2>Cadastrar Usuário</h2>
     <form action="cadastro_usuario.php" method="post">
         <label for="nome">* Nome:</label>
@@ -52,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <label for="senha">* Senha:</label>
         <input type="text" name="senha" id="senha" required>
-        
+
         <label for="id_perfil">* Perfil:</label>
         <select name="id_perfil" id="id_perfil" required>
             <option value="1">Administrador</option>
@@ -64,7 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="submit">Cadastrar</button>
         <button type="reset">Cancelar</button>
     </form>
-    <a href="principal.php">Voltar</a></body>
-    <p>Micael Jeferson Junco</p>
+    <a href="principal.php">Voltar</a>
+</body>
+<p>Micael Jeferson Junco</p>
 
 </html>

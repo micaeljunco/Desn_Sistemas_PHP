@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty(trim($_POST['busca']))) {
 }
 
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+include "permissoes.php";
 ?>
 
 
@@ -49,7 +50,28 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="scripts.js"></script>
 </head>
 
-<body style="padding:4px">
+<body>
+
+    <nav>
+        <ul class="menu">
+            <?php foreach ($opcoes_menu as $categoria => $arquivos): ?>
+
+                <li class="dropdown">
+                    <a href="#"><?= $categoria ?></a>
+                    <ul class="dropdown-menu">
+                        <?php foreach ($arquivos as $arquivo): ?>
+
+                            <li>
+                                <a href="<?= $arquivo ?>"><?= ucfirst(str_replace("_", " ", basename($arquivo, ".php"))) ?></a>
+                            </li>
+                        <?php endforeach ?>
+
+                    </ul>
+                </li>
+            <?php endforeach ?>
+
+        </ul>
+    </nav>
     <h2>Lista de Usuários</h2>
     <form action="buscar_usuario.php" method="POST">
         <label for="busca">Digite o ID ou nome:</label>
@@ -58,7 +80,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </form>
 
     <?php if (!empty($usuarios)): ?>
-        <table class="table">
+        <table class="table" style="margin:0px auto; width: 90%;">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
